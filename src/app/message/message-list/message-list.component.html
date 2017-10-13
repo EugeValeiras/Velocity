@@ -1,0 +1,10 @@
+<div style="text-align:center">
+  <h1>Welcome to my new APP!</h1>
+  <button [appButton]="showMessages ? 'warn' : 'primary'" (click)="toggleShowMessage()">{{showMessages ? 'Hide' : 'Show'}} Messages</button>
+</div>
+
+<ul *ngIf="showMessages">
+  <li *ngFor="let message of messagesService.messages">
+    <app-message-list-item [message]="message"></app-message-list-item>
+  </li>
+</ul>

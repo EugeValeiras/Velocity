@@ -1,7 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 button {
-  background-color: #006BFF;
-  color: #f5ff40;
   border: 0;
   line-height: normal;
   overflow: visible;
@@ -9,6 +7,6 @@ button {
   cursor: pointer;
 }
 
-button:hover {
-  background-color: #373FFF;
+a {
+  cursor: pointer;
 }
