@@ -1,0 +1,7 @@
+<ul>
+  <li *ngFor="let product of cartService.products">
+    {{product.name}} - ${{product.price}}
+  </li>
+</ul>
+
+<p>Total: ${{cartService.total()}}</p>

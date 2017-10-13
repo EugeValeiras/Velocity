@@ -1,0 +1,12 @@
+.productContainer{
+  display: flex;
+  flex-flow: row wrap;
+
+  justify-content: space-around;
+}
+
+.productItem {
+  padding: 25px;
+  width: 200px;
+  border: 1px solid black
+}
