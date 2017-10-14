@@ -1,3 +1,21 @@
-<p>
-  checkout works!
-</p>
+<div class="checkout-container">
+  <form (submit)="submitCheckout(f)" #f="ngForm">
+
+    Name: <input name="name" ngModel>
+    Last Name: <input name="lastName" ngModel required>
+    Gender:
+    <div>
+      <label for="male">Male</label>
+      <input id="male" type="radio" name="gender" value="male" ngModel required>
+      <label for="female">Male</label>
+      <input id="female" type="radio" name="gender" value="female" ngModel required>
+    </div>
+    Address: <input name="address" ngModel required>
+    Zip Code: <input type="number" name="zipCode" ngModel required>
+    <button>Buy!</button>
+  </form>
+
+  <span><b>Valid? </b>{{f.valid}}</span>
+  <pre>{{f.value |json}}</pre>
+
+</div>

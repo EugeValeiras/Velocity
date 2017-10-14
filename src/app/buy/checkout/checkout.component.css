@@ -1,0 +1,12 @@
+.checkout-container {
+  padding: 20px 30px;
+}
+
+form {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+form * {
+  flex: 100%;
+}
