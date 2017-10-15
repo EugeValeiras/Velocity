@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, NgForm, ValidationErrors, Validators} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 
@@ -20,7 +20,8 @@ export class CheckoutComponent implements OnInit {
     'zipCode': new FormControl('', [Validators.required, Validators.min(10000), this.validZipCode], [this.asyncValidatorForZipCode.bind(this)])
   });
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
@@ -29,14 +30,14 @@ export class CheckoutComponent implements OnInit {
     console.log(form);
   }
 
-  validZipCode(control: FormControl): ValidationErrors|null {
+  validZipCode(control: FormControl): ValidationErrors | null {
     if (control.value === 12345) {
       return {zipCodeForbidden: true};
     }
     return null;
   }
 
-  asyncValidatorForZipCode(control: FormControl): Promise<any>|Observable<any> {
+  asyncValidatorForZipCode(control: FormControl): Promise<any> | Observable<any> {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         if (this.forbiddenZipCodes.indexOf(control.value) !== -1) {
