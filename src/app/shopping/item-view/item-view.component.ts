@@ -25,7 +25,10 @@ export class ItemViewComponent implements OnInit {
       .subscribe(params => {
         this.product = <Product>{};
         this.productId = params.id;
-        this.product = this.productService.getProductById(this.productId);
+        this.productService.products$
+          .subscribe(() => {
+            this.product = this.productService.getProductById(this.productId);
+          });
       });
   }
 
