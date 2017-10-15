@@ -8,6 +8,7 @@ import {appRoting} from './app.routing';
 import {ProductService} from './service/product.service';
 import {CartService} from './service/cart.service';
 import {HttpModule} from '@angular/http';
+import {CookieModule} from 'ngx-cookie';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import {HttpModule} from '@angular/http';
     CoreModule,
     RouterModule.forRoot(appRoting),
     HttpModule,
+    CookieModule.forRoot()
   ],
   providers: [
     ProductService,
