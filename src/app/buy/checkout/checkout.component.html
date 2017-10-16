@@ -1,33 +1,52 @@
 <div class="checkout-container">
-  <form (submit)="submitCheckout(f)" #f="ngForm">
+  <form (submit)="submitCheckout(f)" [formGroup]="checkoutForm">
     <hr/>
-    Name: <input #name="ngModel" name="name" ngModel required>
-    <span *ngIf="!name.valid && name.touched">Name is required!</span>
+    Name: <input name="name" formControlName="name">
+    <span *ngIf="!checkoutForm.get('name').valid && checkoutForm.get('name').touched">Name is required!</span>
     <hr/>
-    Last Name: <input #lastName="ngModel" name="lastName" ngModel required>
-    <span *ngIf="!lastName.valid && lastName.touched">Last Name is required!</span>
+    Last Name: <input name="lastName" formControlName="lastName">
+    <span *ngIf="!checkoutForm.get('lastName').valid && checkoutForm.get('lastName').touched">Last Name is required!</span>
     <hr/>
-    Email: <input #email="ngModel" email name="email" ngModel required>
-    <span *ngIf="!email.valid && email.touched">Email is required!</span>
+    Email: <input name="email" formControlName="email">
+    <span *ngIf="!checkoutForm.get('email').valid &&
+                  checkoutForm.get('email').touched &&
+                  checkoutForm.get('email').errors['required']">Email is required!</span>
+
+    <span *ngIf="!checkoutForm.get('email').valid &&
+                  checkoutForm.get('email').touched &&
+                  checkoutForm.get('email').errors['email'] &&
+                  !checkoutForm.get('email').errors['required']">This is not a valid email</span>
     <hr/>
     Gender:
     <div>
       <label for="male">Male</label>
-      <input id="male" type="radio" name="gender" value="male" ngModel required>
+      <input id="male" type="radio" name="gender" value="male" formControlName="gender">
       <label for="female">Male</label>
-      <input id="female" type="radio" name="gender" value="female" ngModel required>
+      <input id="female" type="radio" name="gender" value="female" formControlName="gender">
     </div>
     <hr/>
-    Address: <input name="address" ngModel required>
+    Address: <input name="address" formControlName="address">
     <hr/>
-    Zip Code: <input #zipCode="ngModel" type="number" name="zipCode" ngModel required>
-    <span *ngIf="!zipCode.valid && zipCode.touched">Zip Code is required!</span>
+    Zip Code: <input type="number" name="zipCode" formControlName="zipCode">
+    <span *ngIf="!checkoutForm.get('zipCode').valid &&
+                  checkoutForm.get('zipCode').touched &&
+                  checkoutForm.get('zipCode').errors['required']">Zip Code is required!</span>
+
+    <span *ngIf="!checkoutForm.get('zipCode').valid &&
+                  checkoutForm.get('zipCode').touched &&
+                  checkoutForm.get('zipCode').errors['min'] &&
+                  !checkoutForm.get('zipCode').errors['required']">Zip Code min length is 5 digits</span>
+
+    <span *ngIf="!checkoutForm.get('zipCode').valid &&
+                  checkoutForm.get('zipCode').touched &&
+                  checkoutForm.get('zipCode').errors['zipCodeForbidden'] &&
+                  !checkoutForm.get('zipCode').errors['required']">Zip Code cannot be {{ checkoutForm.get('zipCode').value }}</span>
     <hr/>
-    <button [disabled]="f.invalid">Buy!</button>
+    <button [disabled]="checkoutForm.invalid">Buy!</button>
     <hr/>
   </form>
 
-  <span><b>Valid? </b>{{f.valid}}</span>
-  <pre>{{f.value |json}}</pre>
+  <span><b>Valid? </b>{{checkoutForm.valid}}</span>
+  <pre>{{checkoutForm.value |json}}</pre>
 
 </div>
