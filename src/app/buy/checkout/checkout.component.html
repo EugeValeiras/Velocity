@@ -1,8 +1,15 @@
 <div class="checkout-container">
   <form (submit)="submitCheckout(f)" #f="ngForm">
-
-    Name: <input name="name" ngModel>
-    Last Name: <input name="lastName" ngModel required>
+    <hr/>
+    Name: <input #name="ngModel" name="name" ngModel required>
+    <span *ngIf="!name.valid && name.touched">Name is required!</span>
+    <hr/>
+    Last Name: <input #lastName="ngModel" name="lastName" ngModel required>
+    <span *ngIf="!lastName.valid && lastName.touched">Last Name is required!</span>
+    <hr/>
+    Email: <input #email="ngModel" email name="email" ngModel required>
+    <span *ngIf="!email.valid && email.touched">Email is required!</span>
+    <hr/>
     Gender:
     <div>
       <label for="male">Male</label>
@@ -10,9 +17,14 @@
       <label for="female">Male</label>
       <input id="female" type="radio" name="gender" value="female" ngModel required>
     </div>
+    <hr/>
     Address: <input name="address" ngModel required>
-    Zip Code: <input type="number" name="zipCode" ngModel required>
-    <button>Buy!</button>
+    <hr/>
+    Zip Code: <input #zipCode="ngModel" type="number" name="zipCode" ngModel required>
+    <span *ngIf="!zipCode.valid && zipCode.touched">Zip Code is required!</span>
+    <hr/>
+    <button [disabled]="f.invalid">Buy!</button>
+    <hr/>
   </form>
 
   <span><b>Valid? </b>{{f.valid}}</span>
