@@ -1,5 +1,5 @@
 <div class="header">
-  <a [routerLink]="['buy/cart']">Cart: <span>{{cartService.count()}}</span></a>
+  <a id="goCart" [routerLink]="['buy/cart']">Cart: <span id="cartCounter">{{cartService.count()}}</span></a>
 </div>
 
 <router-outlet></router-outlet>

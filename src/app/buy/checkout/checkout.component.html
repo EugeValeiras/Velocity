@@ -2,7 +2,7 @@
   <form (submit)="submitCheckout(f)" [formGroup]="checkoutForm">
     <hr/>
     Name: <input name="name" formControlName="name">
-    <span *ngIf="!checkoutForm.get('name').valid && checkoutForm.get('name').touched">Name is required!</span>
+    <span id="nameErrorMessage" *ngIf="!checkoutForm.get('name').valid && checkoutForm.get('name').touched">Name is required!</span>
     <hr/>
     Last Name: <input name="lastName" formControlName="lastName">
     <span *ngIf="!checkoutForm.get('lastName').valid && checkoutForm.get('lastName').touched">Last Name is required!</span>
